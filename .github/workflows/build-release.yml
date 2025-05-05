@@ -42,12 +42,12 @@ jobs:
           md -Force "${{env.WORK_FOLDER}}"
 
       - name: Checkout DB
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: ${{env.DB_FOLDER}}
 
       - name: Checkout CORE
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: ${{env.CORE_REPO}}
           path: ${{env.CORE_FOLDER}}
@@ -198,7 +198,7 @@ jobs:
           choco install gawk
 
       - name: Checkout mysql2sqlite
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: dumblob/mysql2sqlite
           path: ${{env.CORE_FOLDER}}/mysql2sqlite
@@ -234,7 +234,7 @@ jobs:
 
   notify-success:
     name: Send Notification to Discord on Success
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: none
 
@@ -269,7 +269,7 @@ jobs:
 
   notify-failure:
     name: Send Notification to Discord on Failure
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: none
     if: failure()
