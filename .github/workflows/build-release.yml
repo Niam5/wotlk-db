@@ -225,14 +225,22 @@ jobs:
         with:
           format: "YYYY-MM-DD"
 
-      - name: Upload Snapshot
-        uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          tag_name: "latest"
           prerelease: false
-          title: "Development Build(${{ steps.date.outputs.time }})"
+          name: "Development Build(${{ steps.date.outputs.time }})"
           files: releases
+
+      #- name: Upload Snapshot
+      #  uses: "marvinpinto/action-automatic-releases@latest"
+      #  with:
+      #    repo_token: "${{ secrets.GITHUB_TOKEN }}"
+      #    automatic_release_tag: "latest"
+      #    prerelease: false
+      #    title: "Development Build(${{ steps.date.outputs.time }})"
+      #    files: releases
 
   notify-success:
     name: Send Notification to Discord on Success
