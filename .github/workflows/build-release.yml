@@ -231,7 +231,7 @@ jobs:
           tag_name: "latest"
           prerelease: false
           name: "Development Build(${{ steps.date.outputs.time }})"
-          generate_release_notes: true
+          #generate_release_notes: true
           files: releases/*
 
       #- name: Upload Snapshot
