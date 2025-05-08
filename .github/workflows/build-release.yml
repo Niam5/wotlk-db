@@ -219,9 +219,11 @@ jobs:
           7z a -tzip "${{github.workspace}}\releases\${{env.EXPANSION_NAME}}-all-db.zip" "${{env.FINAL_SQL_FOLDER}}\*.sql"
           7z a -tzip "${{github.workspace}}\releases\${{env.EXPANSION_NAME}}-sqlite-db.zip" "${{env.FINAL_SQL_FOLDER}}\*.sqlite"
 
-      - name: Get Current Date
+      - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+          format: "YYYY-MM-DD"
 
       - name: Upload Snapshot
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -229,7 +231,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: false
-          title: "Development Build(${{ steps.date.outputs.date }})"
+          title: "Development Build(${{ steps.date.outputs.time }})"
           files: releases
 
   notify-success:
